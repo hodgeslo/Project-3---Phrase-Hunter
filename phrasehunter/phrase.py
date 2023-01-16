@@ -19,14 +19,11 @@ class Phrase:
         print(f"from Prase.display(): {self.active_phrase}")
         print(len(self.active_phrase))
 
-        show_initial_phrase_underscores = True
-
-        while show_initial_phrase_underscores:
-            for key, value in enumerate(self.active_phrase):
-                if value.isalpha():
-                    print("_", end=" ")
-                else:
-                    print("  ", end="")
+        for key, value in enumerate(self.active_phrase):
+            if value.isalpha():
+                print("_", end=" ")
+            else:
+                print("  ", end="")
 
     """
     TODO: checks to see if the letter selected by the user matches a letter in the phrase.
@@ -34,8 +31,7 @@ class Phrase:
 
     def check_letter(self):
         print(f"check_letter(): {self}")
-        self.display().show_initial_phrase_underscores = False
-        return False
+
 
     """
     TODO: checks to see if the whole phrase has been guessed
