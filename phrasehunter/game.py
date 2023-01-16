@@ -14,7 +14,6 @@ class Game:
         ) method. guesses: This is a list that contains the letters guessed by the user.
         """
         self.missed = 0
-        # reduce to 5 phrases before project submission
         self.phrases = [
             "JAWS OF DEATH",
             "HANDS DOWN",
@@ -30,6 +29,7 @@ class Game:
         self.active_phrase = None
         self.guesses = []
         self.active_game = True
+
 
 
     """
@@ -75,11 +75,11 @@ class Game:
     def get_guess(self):
         print("\nGET GUESS")
         user_guess = input("Guess a letter:  ").lower()
-        if user_guess == "" or not user_guess.isalpha():
+        if user_guess == "" or not user_guess.isalpha() or len(user_guess) > 1:
             print(f"Invalid entry. Enter a letter.")
         else:
             self.guesses.append(user_guess)
-            phrase.Phrase.check_letter(user_guess)
+            phrase.Phrase.check_letter(user_guess, self.guesses, self.active_phrase)
         print(self.guesses)
 
 
