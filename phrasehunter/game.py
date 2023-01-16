@@ -74,11 +74,12 @@ class Game:
     """
     def get_guess(self):
         print("\nGET GUESS")
-        user_guess = input("Guess a letter:  ")
+        user_guess = input("Guess a letter:  ").lower()
         if user_guess == "" or not user_guess.isalpha():
             print(f"Invalid entry. Enter a letter.")
         else:
             self.guesses.append(user_guess)
+            phrase.Phrase.check_letter(user_guess)
         print(self.guesses)
 
 

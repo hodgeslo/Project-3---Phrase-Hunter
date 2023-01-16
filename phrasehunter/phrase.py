@@ -3,8 +3,7 @@ from phrasehunter import game
 
 class Phrase:
     def __init__(self, phrase):
-
-        self.active_phrase = phrase
+        self.active_phrase = phrase.lower()
         print(f"FROM class Phrase:  {self.active_phrase}") # remove later
         self.display()
         # for word in self.active_phrase:
@@ -19,23 +18,24 @@ class Phrase:
     def display(self):
         print(f"from Prase.display(): {self.active_phrase}")
         print(len(self.active_phrase))
-        for dash in range(len(self.active_phrase)):
-            print("_", end=" ")
-        print("\n")
 
-        for key, value in enumerate(self.active_phrase):
-            # print(key, value)
-            if value.isalpha():
-                print("_", end=" ")
-            else:
-                print("  ", end="")
+        show_initial_phrase_underscores = True
+
+        while show_initial_phrase_underscores:
+            for key, value in enumerate(self.active_phrase):
+                if value.isalpha():
+                    print("_", end=" ")
+                else:
+                    print("  ", end="")
 
     """
     TODO: checks to see if the letter selected by the user matches a letter in the phrase.
     """
 
     def check_letter(self):
-        pass
+        print(f"check_letter(): {self}")
+        self.display().show_initial_phrase_underscores = False
+        return False
 
     """
     TODO: checks to see if the whole phrase has been guessed
