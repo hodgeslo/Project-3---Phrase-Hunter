@@ -1,11 +1,14 @@
 # Create your Phrase class logic here.
+from phrasehunter import game
+
 class Phrase:
     def __init__(self, phrase):
 
-        self.phrase = phrase
-        print(f"FROM class Phrase:  {self.phrase}") # remove later
-        for word in self.phrase:
-            print(word)
+        self.active_phrase = phrase
+        print(f"FROM class Phrase:  {self.active_phrase}") # remove later
+        self.display()
+        # for word in self.active_phrase:
+        #     print(word)
 
     """
      TODO: display(): this prints out the phrase to the console with guessed letters visibile and unguessed letters as 
@@ -14,7 +17,18 @@ class Phrase:
     """
 
     def display(self):
-        pass
+        print(f"from Prase.display(): {self.active_phrase}")
+        print(len(self.active_phrase))
+        for dash in range(len(self.active_phrase)):
+            print("_", end=" ")
+        print("\n")
+
+        for key, value in enumerate(self.active_phrase):
+            # print(key, value)
+            if value.isalpha():
+                print("_", end=" ")
+            else:
+                print("  ", end="")
 
     """
     TODO: checks to see if the letter selected by the user matches a letter in the phrase.

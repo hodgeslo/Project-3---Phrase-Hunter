@@ -46,6 +46,8 @@ class Game:
         # display welcome message to player
         self.welcome()
 
+        phrase.Phrase(self.active_phrase)
+
         while self.active_game:
             self.get_guess()
 
@@ -71,7 +73,7 @@ class Game:
     get_guess(): this method gets the guess from a user and records it in the guesses attribute
     """
     def get_guess(self):
-        print("GET GUESS")
+        print("\nGET GUESS")
         user_guess = input("Guess a letter:  ")
         if user_guess == "" or not user_guess.isalpha():
             print(f"Invalid entry. Enter a letter.")
