@@ -45,7 +45,9 @@ class Game:
         # display welcome message to player
         self.welcome()
 
-        phrase.Phrase(self.active_phrase)
+        thephrase = phrase.Phrase(self.active_phrase)
+        print(thephrase)
+        print(phrase.Phrase(self.active_phrase))
 
         while self.active_game:
             self.get_guess()
@@ -75,8 +77,8 @@ class Game:
             print(f"Invalid entry. Enter a letter.")
         else:
             self.guesses.append(user_guess)
-            # phrase.Phrase.check_letter(user_guess, self.guesses, self.active_phrase)
-            # phrase.Phrase.check_letter()
+            phrase.Phrase.check_letter(user_guess, self.guesses, self.active_phrase)
+            # phrase.Phrase.check_letter(user_guess)
         print(self.guesses)
 
 
