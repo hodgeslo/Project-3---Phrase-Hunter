@@ -29,8 +29,7 @@ class Game:
         self.active_phrase = None
         self.guesses = []
         self.active_game = True
-
-
+        self.random_phrase_index = random.randrange(0, 10)
 
     """
     Calls the welcome method, creates the game loop, calls the get_guess method, adds the user's guess to guesses, 
@@ -51,13 +50,10 @@ class Game:
         while self.active_game:
             self.get_guess()
 
-
-
     """
      get_random_phrase(): this method randomly retrieves one of the phrases stored in the phrases list and returns it.
     """
     def get_random_phrase(self):
-        self.random_phrase_index = random.randrange(0, 10)
         self.active_phrase = self.phrases[self.random_phrase_index]
         return self.active_phrase
 
@@ -79,8 +75,8 @@ class Game:
             print(f"Invalid entry. Enter a letter.")
         else:
             self.guesses.append(user_guess)
-            #phrase.Phrase.check_letter(user_guess, self.guesses, self.active_phrase)
-            phrase.Phrase.check_letter(user_guess)
+            # phrase.Phrase.check_letter(user_guess, self.guesses, self.active_phrase)
+            # phrase.Phrase.check_letter()
         print(self.guesses)
 
 
