@@ -79,7 +79,8 @@ class Game:
             print(f"Invalid entry. Enter a letter.")
         else:
             self.guesses.append(user_guess)
-            phrase.Phrase.check_letter(user_guess, self.guesses, self.active_phrase)
+            #phrase.Phrase.check_letter(user_guess, self.guesses, self.active_phrase)
+            phrase.Phrase.check_letter(user_guess)
         print(self.guesses)
 
 

@@ -1,4 +1,5 @@
 # Create your Phrase class logic here.
+import phrasehunter.phrase
 from phrasehunter import game
 
 class Phrase:
@@ -19,21 +20,23 @@ class Phrase:
         print(f"from Prase.display(): {self.active_phrase}")
         print(len(self.active_phrase))
 
+
         for key, value in enumerate(self.active_phrase):
             if value.isalpha():
                 print("_", end=" ")
             else:
                 print("  ", end="")
 
+
     """
     TODO: checks to see if the letter selected by the user matches a letter in the phrase.
     """
-    def check_letter(self, guess_list, active_phrase_string):
-        user_phrase_char_match = None
-        print(f"check_letter(): {self.upper()}")
-        print(f"check_letter(): {guess_list}")
-        print(f"check_letter(): {active_phrase_string}")
+    def check_letter(self):
+        print(self)
+        # user_phrase_char_match = guess_list[0].strip()
 
+        #if user_phrase_char_match == self.active_phrase:
+        #    print(f"check_letter(): {guess_list[0].strip()}")
 
     """
     TODO: checks to see if the whole phrase has been guessed
