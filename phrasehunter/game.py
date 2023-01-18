@@ -61,8 +61,7 @@ class Game:
      get_random_phrase(): this method randomly retrieves one of the phrases stored in the phrases list and returns it.
     """
     def get_random_phrase(self):
-        random_phrase_index = random.randrange(0, 10)
-        self.active_phrase = self.phrases[random_phrase_index]
+        self.active_phrase = random.choice(self.phrases)
         return self.active_phrase
 
 
