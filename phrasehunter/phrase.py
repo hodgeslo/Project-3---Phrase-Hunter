@@ -21,11 +21,11 @@ class Phrase:
         print(f"\nfrom Phrase.display(): {self.phrase}")
         print(len(self.phrase))
 
-        # for key, value in enumerate(self.phrase):
-        #     if value.isalpha():
-        #         print("_", end=" ")
-        #     else:
-        #         print("  ", end="")
+        for key, value in enumerate(self.phrase):
+            if value.isalpha():
+                print("_", end=" ")
+            else:
+                print("  ", end="")
 
     """
     TODO: checks to see if the letter selected by the user matches a letter in the phrase.
@@ -33,15 +33,15 @@ class Phrase:
     def check_letter(self, user_guesses, active_phrase):
         active_string = active_phrase.lower()
 
-        print(f"\nfrom check_letter(): {self}")
-        print(f"\nfrom check_letter(): {user_guesses}")
-        print(f"\nfrom check_letter(): {active_string}")
+        # print(f"\nfrom check_letter(): {self}")
+        # print(f"from check_letter(): {user_guesses}")
+        # print(f"from check_letter(): {active_string}")
 
-        print(active_string.find(self))
+        # print(active_string.find(self))
+
         if active_string.find(self) == -1:
             return False
-        elif active_string.find(self) >= 0:
-            return True
+        return True
 
     """
     TODO: checks to see if the whole phrase has been guessed
