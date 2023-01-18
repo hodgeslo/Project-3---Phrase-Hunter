@@ -2,6 +2,7 @@
 import phrasehunter.phrase
 from phrasehunter import game
 
+
 class Phrase:
     def __init__(self, phrase):
         self.phrase = phrase.lower()
@@ -10,6 +11,7 @@ class Phrase:
         # self.check_letter()
         # for word in self.phrase:
         #     print(word)
+
 
     """
      TODO: display(): this prints out the phrase to the console with guessed letters visible and unguessed letters as 
@@ -30,16 +32,16 @@ class Phrase:
     """
     TODO: checks to see if the letter selected by the user matches a letter in the phrase.
     """
-    def check_letter(self, user_guesses, active_phrase):
-        active_string = active_phrase.lower()
 
+    def check_letter(self):
+        # print(f"from check_letter(): {self.phrase}")
         # print(f"\nfrom check_letter(): {self}")
         # print(f"from check_letter(): {user_guesses}")
         # print(f"from check_letter(): {active_string}")
 
         # print(active_string.find(self))
 
-        if active_string.find(self) == -1:
+        if self.find(self) == -1:
             return False
         return True
 
