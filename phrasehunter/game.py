@@ -45,9 +45,7 @@ class Game:
         # display welcome message to player
         self.welcome()
 
-        thephrase = phrase.Phrase(self.active_phrase)
-        print(thephrase)
-        print(phrase.Phrase(self.active_phrase))
+        phrase.Phrase(self.active_phrase)
 
         while self.active_game:
             self.get_guess()

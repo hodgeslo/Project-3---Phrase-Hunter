@@ -39,9 +39,6 @@ class Phrase:
 
         print(active_string.find(self))
 
-
-
-
     """
     TODO: checks to see if the whole phrase has been guessed
     """
