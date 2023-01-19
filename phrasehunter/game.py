@@ -27,7 +27,7 @@ class Game:
             "CUT THE MUSTARD",
             "CAT IN THE HAT",
             "BREAK THE ICE",
-            "A HAIR’S BREADTH"
+            "A HAIR LENGTH"
         ]
         self.active_phrase = None
         self.guesses = []
