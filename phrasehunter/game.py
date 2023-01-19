@@ -30,47 +30,15 @@ class Game:
         ]
         self.active_phrase = None
         self.guesses = []
+
         self.active_game = True
-        self.the_phrase = None
-
-    """
-    Calls the welcome method, creates the game loop, calls the get_guess method, adds the user's guess to guesses, 
-    increments the number of missed by one if the guess is incorrect, calls the game_over method.
-    thephrase = phrase.RandomPhrase()
-    print(thephrase)
-    phrase.Phrase(thephrase)
-    """
-
-    def start(self):
-        # display welcome message to player
-        self.welcome()
-
-        self.get_random_phrase()
-
-        the_phrase = phrase.Phrase(self.active_phrase)
-        # the_phrase.check_letter(self.active_phrase)
-
-        print(f"From start() random phrase: {self.active_phrase}")  # remove later
-
-        # display initial phrase
-        for key, value in enumerate(self.active_phrase):
-            if value.isalpha():
-                print("_", end=" ")
-            else:
-                print("  ", end="")
-
-
-
-        while self.active_game:
-            self.get_guess()
 
     """
      get_random_phrase(): this method randomly retrieves one of the phrases stored in the phrases list and returns it.
     """
 
     def get_random_phrase(self):
-        self.active_phrase = random.choice(self.phrases)
-        return self.active_phrase
+        return random.choice(self.phrases)
 
     """
     welcome(): this method prints a friendly welcome message to the user at the start of the game
@@ -90,11 +58,6 @@ class Game:
             print(f"Invalid entry. Enter a letter.")
         else:
             self.guesses.append(user_guess)
-            if phrase.Phrase.check_letter(user_guess) is True:
-                print(f"returned from check_letter TRUE")
-            else:
-                print(f"returned from check_letter FALSE")
-            # phrase.Phrase.check_letter(user_guess)
         print(self.guesses)
 
     """
@@ -103,3 +66,27 @@ class Game:
 
     def game_over(self):
         pass
+
+    """
+    Calls the welcome method, creates the game loop, calls the get_guess method, adds the user's guess to guesses, 
+    increments the number of missed by one if the guess is incorrect, calls the game_over method.
+    """
+
+    def start(self):
+        # display welcome message to player
+        self.welcome()
+
+        print(f"from start() with initial value: {self.active_phrase}")
+
+        self.active_phrase = phrase.Phrase(self.get_random_phrase())
+
+        print(f"From start(): {self.active_phrase}")  # remove later
+
+        for key, value in enumerate(self.active_phrase):
+            if value.isalpha():
+                print("_", end=" ")
+            else:
+                print("  ", end="")
+
+        while self.active_game:
+            self.get_guess()

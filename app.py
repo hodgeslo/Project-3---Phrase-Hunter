@@ -6,11 +6,10 @@
 ## Create an instance of your Game class
 ## Start your game by calling the instance method that starts the game loop
 from phrasehunter import game
-from phrasehunter import phrase
 
 if __name__ == '__main__':
-    thegame = game.Game()
-    thegame.start()
+    game = game.Game()
+    game.start()
 
 
 
