@@ -1,5 +1,5 @@
 # Create your Phrase class logic here.
-
+import re
 class Phrase:
     def __init__(self, phrase):
         self.active_phrase = phrase.lower()
@@ -20,8 +20,11 @@ class Phrase:
      the output should look like this: _ _ _ _ o   _ o _ _ _ 
     """
 
-    def display(self):
+    def display(self, user_guess):
         print(f"from phrase.display():  {self.active_phrase} and {id(self.active_phrase)}")
+        print(f"from phrase.display(): {user_guess}")
+
+        temp_list = []
         for key, value in enumerate(self.active_phrase):
             if value.isalpha():
                 print("_", end=" ")

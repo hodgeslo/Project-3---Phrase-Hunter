@@ -13,7 +13,8 @@ class Game:
         phrase should only include letters and spaces -- no numbers, puntuation or other special characters.
         active_phrase: This is the Phrase object that's currently in play. The initial value will be None. Within the
         start() method, this property will be set to the Phrase object returned from a call to the get_random_phrase(
-        ) method. guesses: This is a list that contains the letters guessed by the user.
+        ) method.
+        guesses: This is a list that contains the letters guessed by the user.
         """
         self.missed = 0
         self.phrases = [
@@ -54,10 +55,10 @@ class Game:
     def get_guess(self):
         print("\nGET GUESS")
         user_guess = input("Guess a letter:  ").lower()
+
         if user_guess == "" or not user_guess.isalpha() or len(user_guess) > 1:
             print(f"Invalid entry. Enter a letter.")
         else:
-            self.guesses.append(user_guess)
             if self.active_phrase.check_letter(user_guess) is False:
                 print(f"FALSE FOOL")
                 self.missed += 1
@@ -65,6 +66,8 @@ class Game:
                 # self.active_phrase.display()
             else:
                 print(f"TRUE TRAMP")
+                self.guesses.append(user_guess)
+                self.active_phrase.display(user_guess)
         # print(self.guesses)
         # print(f"from get_guess(): {self.active_phrase} and {id(self.active_phrase)}")
         # self.active_phrase.display()
