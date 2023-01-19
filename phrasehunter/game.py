@@ -31,7 +31,7 @@ class Game:
         self.active_phrase = None
         self.guesses = []
 
-        self.active_game = True
+        # self.active_game = True
 
     """
      get_random_phrase(): this method randomly retrieves one of the phrases stored in the phrases list and returns it.
@@ -58,14 +58,23 @@ class Game:
             print(f"Invalid entry. Enter a letter.")
         else:
             self.guesses.append(user_guess)
-        print(self.guesses)
+            if self.active_phrase.check_letter(user_guess) is False:
+                print(f"FALSE FOOL")
+                self.missed += 1
+                print(self.missed)
+                # self.active_phrase.display()
+            else:
+                print(f"TRUE TRAMP")
+        # print(self.guesses)
+        # print(f"from get_guess(): {self.active_phrase} and {id(self.active_phrase)}")
+        # self.active_phrase.display()
 
     """
     game_over(): this method displays a friendly win or loss message and ends the game.
     """
 
     def game_over(self):
-        pass
+        return f"GAME OVER"
 
     """
     Calls the welcome method, creates the game loop, calls the get_guess method, adds the user's guess to guesses, 
@@ -76,17 +85,22 @@ class Game:
         # display welcome message to player
         self.welcome()
 
-        print(f"from start() with initial value: {self.active_phrase}")
+        print(f"from start() with initial value: {self.active_phrase} and {id(self.active_phrase)}")
 
         self.active_phrase = phrase.Phrase(self.get_random_phrase())
 
-        print(f"From start(): {self.active_phrase}")  # remove later
+        print(f"From start(): {self.active_phrase} and {id(self.active_phrase)}")  # remove later
 
-        for key, value in enumerate(self.active_phrase):
-            if value.isalpha():
-                print("_", end=" ")
-            else:
-                print("  ", end="")
+        # for key, value in enumerate(self.active_phrase):
+        #     if value.isalpha():
+        #         print("_", end=" ")
+        #     else:
+        #         print("  ", end="")
 
-        while self.active_game:
+        while self.missed < 5:
             self.get_guess()
+        else:
+            print(self.game_over())
+
+
+

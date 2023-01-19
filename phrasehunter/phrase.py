@@ -10,6 +10,10 @@ class Phrase:
     def __iter__(self):
         return iter(self.active_phrase)
 
+    def __repr__(self) -> str:
+        return self
+
+
     """
      TODO: display(): this prints out the phrase to the console with guessed letters visible and unguessed letters as 
      underscores. For example, if the current phrase is "hello world" and the user has guessed the letter "o", 
@@ -17,6 +21,7 @@ class Phrase:
     """
 
     def display(self):
+        print(f"from phrase.display():  {self.active_phrase} and {id(self.active_phrase)}")
         for key, value in enumerate(self.active_phrase):
             if value.isalpha():
                 print("_", end=" ")
@@ -27,8 +32,17 @@ class Phrase:
     TODO: checks to see if the letter selected by the user matches a letter in the phrase.
     """
 
-    def check_letter(self):
-        pass
+    def check_letter(self, user_guess):
+        print(f"DEEZ NUTS")
+        print(f"what is this CLASS: {self.__str__()} and {type(self)}")
+        print(f"what is this: {user_guess}")
+        print(f"from check letter:  {self.active_phrase} and {id(self.active_phrase)} and {type(self.active_phrase)}")
+        if self.__str__().find(user_guess) is -1:
+            return False
+        elif self.__str__().find(user_guess) >= 0:
+            return True
+
+
 
     """
     TODO: checks to see if the whole phrase has been guessed
