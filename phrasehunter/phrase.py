@@ -1,5 +1,7 @@
 # Create your Phrase class logic here.
-import re
+
+
+
 class Phrase:
     def __init__(self, phrase):
         self.active_phrase = phrase.lower()
@@ -10,9 +12,8 @@ class Phrase:
     def __iter__(self):
         return iter(self.active_phrase)
 
-    def __repr__(self) -> str:
+    def __repr__(self):
         return self
-
 
     """
      TODO: display(): this prints out the phrase to the console with guessed letters visible and unguessed letters as 
@@ -28,8 +29,25 @@ class Phrase:
         for key, value in enumerate(self.active_phrase):
             if value.isalpha():
                 print("_", end=" ")
+                temp_list.append(value)
             else:
                 print("  ", end="")
+                temp_list.append(value)
+
+        print(temp_list)
+
+        temp_list = [user_guess if item == user_guess else item for item in temp_list]
+
+        print(temp_list)
+
+        indices = []
+
+        for key1, value1 in enumerate(temp_list):
+            print(key1, value1)
+            if value1 == user_guess:
+                indices.append(key1)
+
+        print(indices)
 
     """
     TODO: checks to see if the letter selected by the user matches a letter in the phrase.
@@ -44,8 +62,6 @@ class Phrase:
             return False
         elif self.__str__().find(user_guess) >= 0:
             return True
-
-
 
     """
     TODO: checks to see if the whole phrase has been guessed
