@@ -47,10 +47,10 @@ class Game:
 
         self.get_random_phrase()
 
-        # the_phrase = phrase.Phrase(self.active_phrase)
+        the_phrase = phrase.Phrase(self.active_phrase)
         # the_phrase.check_letter(self.active_phrase)
 
-        # print(f"From start() random phrase: {self.active_phrase}")  # remove later
+        print(f"From start() random phrase: {self.active_phrase}")  # remove later
 
         # display initial phrase
         for key, value in enumerate(self.active_phrase):
