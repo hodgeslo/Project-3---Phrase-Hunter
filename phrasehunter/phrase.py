@@ -40,11 +40,20 @@ class Phrase:
                 value = " "
                 # print("  ", end="")
                 dashed_list.append(value)
+        # pprint blanks at start of game
         print(f"dash list!: {' '.join(dashed_list)}  ")
 
         the_indices = [idx for idx, element in enumerate(temp_list) if element == user_guess]
         print(f"ffrom display() the indices: {the_indices} and {type(the_indices)}")
         (print("\n\n"))
+
+        for i, k in enumerate(the_indices):
+            dashed_list[k] = user_guess
+
+
+
+
+        print(f"updated dash list!: {' '.join(dashed_list)}  ")
 
 
     """
