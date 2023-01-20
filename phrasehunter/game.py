@@ -32,7 +32,6 @@ class Game:
         self.active_phrase = None
         self.guesses = []
 
-        # self.active_game = True
 
     """
      get_random_phrase(): this method randomly retrieves one of the phrases stored in the phrases list and returns it.
@@ -68,7 +67,7 @@ class Game:
                 print(f"TRUE TRAMP")
                 self.guesses.append(user_guess)
                 self.active_phrase.display(user_guess)
-        # print(self.guesses)
+        print(f"user guesses matched:  {self.guesses}")
         # print(f"from get_guess(): {self.active_phrase} and {id(self.active_phrase)}")
         # self.active_phrase.display()
 

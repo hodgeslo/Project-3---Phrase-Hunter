@@ -50,8 +50,8 @@ class Phrase:
         for i, k in enumerate(the_indices):
             dashed_list[k] = user_guess
 
-
-
+        my_list = dashed_list.copy()
+        print(f"MY LIST:  {my_list}")
 
         print(f"updated dash list!: {' '.join(dashed_list)}  ")
 
