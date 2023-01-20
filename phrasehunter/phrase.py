@@ -21,6 +21,7 @@ class Phrase:
     """
 
     def display(self, user_guess):
+        show_initial_menu = True
         print(f"from phrase.display():  {self.active_phrase} and {id(self.active_phrase)}")
         print(f"from phrase.display(): {user_guess}")
 
@@ -29,21 +30,22 @@ class Phrase:
         print(f"\nTEMP LIST: {temp_list}")
 
         for key, value in enumerate(self.active_phrase):
-            # print(key, value)
+            print(key, value)
             if value.isalpha():
-                print("_", end=" ")
+                value = "_"
+                # print("_", end=" ")
                 dashed_list.append(value)
                 # print(f"TEMP LIST: {temp_list}")
             else:
-                print("  ", end="")
+                value = " "
+                # print("  ", end="")
                 dashed_list.append(value)
-        print(dashed_list)
+        print(f"dash list!: {' '.join(dashed_list)}  ")
 
+        the_indices = [ind for ind, ele in enumerate(temp_list) if ele == user_guess]
+        print(f"ffrom display() the indices: {the_indices} and {type(the_indices)}")
+        (print("\n\n"))
 
-
-        # temp_list = [user_guess if item == user_guess else item for item in temp_list]
-
-        # print(temp_list)
 
     """
     TODO: checks to see if the letter selected by the user matches a letter in the phrase.
