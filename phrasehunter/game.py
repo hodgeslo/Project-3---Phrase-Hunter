@@ -32,7 +32,6 @@ class Game:
         self.active_phrase = None
         self.guesses = []
 
-
     """
      get_random_phrase(): this method randomly retrieves one of the phrases stored in the phrases list and returns it.
     """
@@ -53,10 +52,25 @@ class Game:
 
     def get_guess(self):
         print("\nGET GUESS")
-        user_guess = input("Guess a letter:  ").lower()
 
-        if user_guess == "" or not user_guess.isalpha() or len(user_guess) > 1:
-            print(f"Invalid entry. Enter a letter.")
+        if not self.guesses:
+            # print(f"NOT EMPTY:  self.guesses []")
+            for key, value in enumerate(self.active_phrase):
+                # print(key, value)
+                if value.isalpha():
+                    value = "_"
+                    print("_", end=" ")
+                    # dashed_list.append(value)
+                    # print(f"TEMP LIST: {temp_list}")
+                else:
+                    value = " "
+                    print("  ", end="")
+                    # dashed_list.append(value)
+
+        user_guess = input("\n\nGuess a letter:  ").lower()
+
+        if user_guess == "" or not user_guess.isalpha() or len(user_guess) > 1 or [idx for idx, element in enumerate(self.guesses) if element == user_guess]:
+            print(f"Invalid entry or you already guessed that letter. Enter a letter and ensure that it is not a duplicate guess.")
         else:
             if self.active_phrase.check_letter(user_guess) is False:
                 print(f"FALSE FOOL")
@@ -66,10 +80,9 @@ class Game:
             else:
                 print(f"TRUE TRAMP")
                 self.guesses.append(user_guess)
-                self.active_phrase.display(user_guess)
-        print(f"user guesses matched:  {self.guesses}")
-        # print(f"from get_guess(): {self.active_phrase} and {id(self.active_phrase)}")
-        # self.active_phrase.display()
+                # print(f"from true tramp:  {self.active_phrase.display(user_guess)}")
+                f"from true tramp:  {self.active_phrase.display(self.guesses)}"
+        # print(f"user guesses matched:  {self.guesses}")
 
     """
     game_over(): this method displays a friendly win or loss message and ends the game.
@@ -87,7 +100,7 @@ class Game:
         # display welcome message to player
         self.welcome()
 
-        print(f"from start() with initial value: {self.active_phrase} and {id(self.active_phrase)}")
+        # print(f"from start() with initial value: {self.active_phrase} and {id(self.active_phrase)}")
 
         self.active_phrase = phrase.Phrase(self.get_random_phrase())
 
@@ -103,6 +116,3 @@ class Game:
             self.get_guess()
         else:
             print(self.game_over())
-
-
-
