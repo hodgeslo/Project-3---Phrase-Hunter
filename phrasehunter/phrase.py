@@ -44,7 +44,7 @@ class Phrase:
         print(f"dash list!: {' '.join(dashed_list)}  ")
 
         the_indices = [idx for idx, element in enumerate(temp_list) if element == user_guess]
-        print(f"ffrom display() the indices: {the_indices} and {type(the_indices)}")
+        print(f"from display() the indices: {the_indices} and {type(the_indices)}")
         (print("\n\n"))
 
         for i, k in enumerate(the_indices):
