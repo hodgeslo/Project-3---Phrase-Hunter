@@ -15,6 +15,13 @@ class Phrase:
     def __repr__(self):
         return self
 
+    def find_indices(self, list_to_check, item_to_find):
+        indices = []
+        for idx, value in enumerate(list_to_check):
+            if value == item_to_find:
+                indices.append(idx)
+        return indices
+
 
     """
      TODO: display(): this prints out the phrase to the console with guessed letters visible and unguessed letters as 
@@ -27,6 +34,30 @@ class Phrase:
         print(f"from phrase.display() WHAT: {user_guessed_list}")
 
         print(f"\nTEMP LIST: {self.active_phrase_list}")
+
+        for a, b in enumerate(user_guessed_list):
+            print(b)
+            # the_indices = [idx for idx, element in enumerate(self.active_phrase_list) if element == user_guessed_list[a]]
+            print(self.active_phrase_list.index(b))
+
+        dashed_list = []
+
+        for a, b in enumerate(user_guessed_list):
+            print(self.find_indices(self.active_phrase_list, b))
+
+        for key, value in enumerate(self.active_phrase_list):
+            # print(key, value)
+            if value.isalpha():
+                value = "_"
+                # print("_", end=" ")
+                dashed_list.append(value)
+                # print(f"TEMP LIST: {temp_list}")
+            else:
+                value = " "
+                # print("  ", end="")
+                dashed_list.append(value)
+
+        print(f"dash list!: {' '.join(dashed_list)}  ")
 
         """ WORK ABOVE THIS LINE """
 
