@@ -51,8 +51,6 @@ class Phrase:
 
         print(f"dash list!: {' '.join(dashed_list)}  ")
 
-        myres = [self.active_phrase_list[me] for me in dashed_list]
-        print(f"myrest:  {myres}")
 
         for a, b in enumerate(user_guessed_list):
             print(a, b)
