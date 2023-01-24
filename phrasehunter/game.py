@@ -53,19 +53,19 @@ class Game:
     def get_guess(self):
         print("\nGET GUESS")
 
-        if not self.guesses:
-            # print(f"NOT EMPTY:  self.guesses []")
-            for key, value in enumerate(self.active_phrase):
-                # print(key, value)
-                if value.isalpha():
-                    value = "_"
-                    print("_", end=" ")
-                    # dashed_list.append(value)
-                    # print(f"TEMP LIST: {temp_list}")
-                else:
-                    value = " "
-                    print("  ", end="")
-                    # dashed_list.append(value)
+        # if not self.guesses:
+        #     # print(f"NOT EMPTY:  self.guesses []")
+        #     for key, value in enumerate(self.active_phrase):
+        #         # print(key, value)
+        #         if value.isalpha():
+        #             value = "_"
+        #             print("_", end=" ")
+        #             # dashed_list.append(value)
+        #             # print(f"TEMP LIST: {temp_list}")
+        #         else:
+        #             value = " "
+        #             print("  ", end="")
+        #             # dashed_list.append(value)
 
         user_guess = input("\n\nGuess a letter:  ").lower()
 
@@ -81,8 +81,9 @@ class Game:
                 print(f"TRUE TRAMP")
                 self.guesses.append(user_guess)
                 # print(f"from true tramp:  {self.active_phrase.display(user_guess)}")
-                # self.active_phrase.display(user_guess)
+                #self.active_phrase.display(user_guess)
                 self.active_phrase.display(self.guesses)
+                self.active_phrase.check_complete(self.guesses)
                 # print(f"from true tramp:  {self.active_phrase.display(self.guesses)}")
         # print(f"user guesses matched:  {self.guesses}")
 

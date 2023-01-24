@@ -36,6 +36,7 @@ class Phrase:
 
         print(f"\nACTIVE PHRASE LIST: {list(self.active_phrase)}")
 
+
         dashed_list = []
 
         for key, value in enumerate(list(self.active_phrase)):
@@ -45,7 +46,6 @@ class Phrase:
             #     # print("_", end=" ")
             #     dashed_list.append(value)
             if value == user_guessed_list:
-                print(f"THESE LETTERS MATCHED")
                 value = user_guessed_list
                 dashed_list.append(value)
             elif value.isalpha():
@@ -58,7 +58,6 @@ class Phrase:
                 dashed_list.append(value)
 
         print(f"dash list!: {' '.join(dashed_list)}  ")
-
 
         print(f"NEW DASHED LIST: {dashed_list}")
         #
@@ -128,5 +127,7 @@ class Phrase:
     TODO: checks to see if the whole phrase has been guessed
     """
 
-    def check_complete(self):
-        pass
+    def check_complete(self, user_guessed_list):
+        print(f"from check_complete():  {set(self.active_phrase)}")
+        print(f"from check_complete():  {set(user_guessed_list)}")
+        print("f")
