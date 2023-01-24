@@ -35,14 +35,7 @@ class Phrase:
 
         print(f"\nTEMP LIST: {self.active_phrase_list}")
 
-        for a, b in enumerate(user_guessed_list):
-            # the_indices = [idx for idx, element in enumerate(self.active_phrase_list) if element == user_guessed_list[a]]
-            print(self.active_phrase_list.index(b))
-
         dashed_list = []
-
-        # for a, b in enumerate(user_guessed_list):
-        #     print(self.find_indices(self.active_phrase_list, b))
 
         for key, value in enumerate(self.active_phrase_list):
             # print(key, value)
@@ -58,7 +51,35 @@ class Phrase:
 
         print(f"dash list!: {' '.join(dashed_list)}  ")
 
-        print([user_guessed_list[h] for h in dashed_list])
+        myres = [self.active_phrase_list[me] for me in dashed_list]
+        print(f"myrest:  {myres}")
+
+        for a, b in enumerate(user_guessed_list):
+            print(a, b)
+            print(self.find_indices(self.active_phrase_list, b))
+            my_new_list = self.find_indices(self.active_phrase_list, b)
+
+        # for c, d in enumerate(my_new_list):
+        #     print(c, d)
+        #     dashed_list[d] = "DEEZ"
+
+        print(f"NEW DASHED LIST: {dashed_list}")
+        #
+        # the_indices = []
+        # for idx, value in enumerate(self.active_phrase_list):
+        #     if value == item_to_find:
+        #         the_indices.append(idx)
+
+
+
+
+
+
+
+
+
+
+
 
         """ WORK ABOVE THIS LINE """
 
