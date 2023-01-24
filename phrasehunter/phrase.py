@@ -36,6 +36,8 @@ class Phrase:
 
         print(f"\nACTIVE PHRASE LIST: {list(self.active_phrase)}")
 
+        the_indices = [index for (index, item) in enumerate(self.active_phrase) if item == user_guessed_list]
+        print(f"THE INDICES: {the_indices}")
 
         dashed_list = []
 
@@ -128,6 +130,4 @@ class Phrase:
     """
 
     def check_complete(self, user_guessed_list):
-        print(f"from check_complete():  {set(self.active_phrase)}")
-        print(f"from check_complete():  {set(user_guessed_list)}")
-        print("f")
+        pass
