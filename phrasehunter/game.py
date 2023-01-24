@@ -81,8 +81,9 @@ class Game:
                 print(f"TRUE TRAMP")
                 self.guesses.append(user_guess)
                 # print(f"from true tramp:  {self.active_phrase.display(user_guess)}")
-                self.active_phrase.display(user_guess)
+                # self.active_phrase.display(user_guess)
                 # self.active_phrase.display(self.guesses)
+                self.active_phrase.display(user_guess, self.guesses)
                 # print(f"from true tramp:  {self.active_phrase.display(self.guesses)}")
         # print(f"user guesses matched:  {self.guesses}")
 

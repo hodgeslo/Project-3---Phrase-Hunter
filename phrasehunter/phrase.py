@@ -29,51 +29,46 @@ class Phrase:
      the output should look like this: _ _ _ _ o   _ o _ _ _ 
     """
 
-    def display(self, user_guessed_list):
+    def display(self, user_guess, user_guessed_list):
         # active_phrase_list = list(self.active_phrase)
         # print(f"from phrase.display():  {self.active_phrase} and {id(self.active_phrase)}")
         print(f"from phrase.display() WHAT: {user_guessed_list}")
 
         print(f"\nACTIVE PHRASE LIST: {list(self.active_phrase)}")
 
-        the_indices = [index for (index, item) in enumerate(self.active_phrase) if item == user_guessed_list]
-        print(f"THE INDICES: {the_indices}")
+        # the_indices = [index for (index, item) in enumerate(self.active_phrase) if item == user_guessed_list[index]]
+        # print(f"THE INDICES: {the_indices}")
 
         dashed_list = []
 
-        for key, value in enumerate(list(self.active_phrase)):
+        for key, value in enumerate(iter(self.active_phrase)):
             # print(key, value)
             # if value.isalpha():
             #     value = "_"
             #     # print("_", end=" ")
             #     dashed_list.append(value)
-            if value == user_guessed_list:
-                value = user_guessed_list
-                dashed_list.append(value)
-            elif value.isalpha():
-                value = "_"
-                # print("_", end=" ")
-                dashed_list.append(value)
+            # if value == user_guess:
+            #     # value = user_guess
+            #     print(value)
+            #     dashed_list.append(value)
+            if value.isalpha() and value != user_guess:
+                #value = "_"
+                print("_", end=" ")
+                # dashed_list.append(value)
             else:
-                value = " "
-                # print("  ", end="")
+                #value = " "
+                print("  ", end="")
                 dashed_list.append(value)
 
-        print(f"dash list!: {' '.join(dashed_list)}  ")
+        print(f"\ndash list!: {' '.join(dashed_list)}  ")
 
         print(f"NEW DASHED LIST: {dashed_list}")
+
         #
         # the_indices = []
         # for idx, value in enumerate(self.active_phrase_list):
         #     if value == item_to_find:
         #         the_indices.append(idx)
-
-
-
-
-
-
-
 
 
 
