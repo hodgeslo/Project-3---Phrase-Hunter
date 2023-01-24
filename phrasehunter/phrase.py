@@ -4,7 +4,7 @@
 class Phrase:
     def __init__(self, phrase):
         self.active_phrase = phrase.lower()
-        self.active_phrase_list = list(self.active_phrase)
+        # self.active_phrase_list = list(self.active_phrase)
 
     def __str__(self):
         return self.active_phrase
@@ -30,20 +30,28 @@ class Phrase:
     """
 
     def display(self, user_guessed_list):
+        # active_phrase_list = list(self.active_phrase)
         # print(f"from phrase.display():  {self.active_phrase} and {id(self.active_phrase)}")
         print(f"from phrase.display() WHAT: {user_guessed_list}")
 
-        print(f"\nTEMP LIST: {self.active_phrase_list}")
+        print(f"\nACTIVE PHRASE LIST: {list(self.active_phrase)}")
 
         dashed_list = []
 
-        for key, value in enumerate(self.active_phrase_list):
+        for key, value in enumerate(list(self.active_phrase)):
             # print(key, value)
-            if value.isalpha():
+            # if value.isalpha():
+            #     value = "_"
+            #     # print("_", end=" ")
+            #     dashed_list.append(value)
+            if value == user_guessed_list:
+                print(f"THESE LETTERS MATCHED")
+                value = user_guessed_list
+                dashed_list.append(value)
+            elif value.isalpha():
                 value = "_"
                 # print("_", end=" ")
                 dashed_list.append(value)
-                # print(f"TEMP LIST: {temp_list}")
             else:
                 value = " "
                 # print("  ", end="")
@@ -51,15 +59,6 @@ class Phrase:
 
         print(f"dash list!: {' '.join(dashed_list)}  ")
 
-
-        for a, b in enumerate(user_guessed_list):
-            print(a, b)
-            print(self.find_indices(self.active_phrase_list, b))
-            my_new_list = self.find_indices(self.active_phrase_list, b)
-
-        # for c, d in enumerate(my_new_list):
-        #     print(c, d)
-        #     dashed_list[d] = "DEEZ"
 
         print(f"NEW DASHED LIST: {dashed_list}")
         #
@@ -112,8 +111,7 @@ class Phrase:
         #     print(x, y)
         #     print([idx1 for idx1, element1 in enumerate(temp_list) if element1 == user_guessed_list[x]])
 
-
-        # return my_list
+        # return dashed_list
 
 
     """
@@ -121,7 +119,7 @@ class Phrase:
     """
 
     def check_letter(self, user_guess_character):
-        if user_guess_character in self.active_phrase_list:
+        if user_guess_character in list(self.active_phrase):
             return True
         else:
             return False
