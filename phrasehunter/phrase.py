@@ -36,8 +36,8 @@ class Phrase:
 
         print(f"\nACTIVE PHRASE LIST: {list(self.active_phrase)}")
 
-        the_indices = [index for (index, item) in enumerate(self.active_phrase) if item == user_guess]
-        print(f"THE INDICES: {the_indices}")
+        #the_indices = [index for (index, item) in enumerate(self.active_phrase) if item == user_guess]
+        #print(f"THE INDICES: {the_indices}")
 
         dashed_list = []
 
@@ -57,9 +57,13 @@ class Phrase:
         print(f"NEW DASHED LIST: {dashed_list}")
 
         for a, b in enumerate(user_guessed_list):
-            print(a, b)
-            filter([lambda element:element == b, self.active_phrase_list])
-
+            #print(a, b)
+            #print([index for (index, item) in enumerate(self.active_phrase) if item == b])
+            for idx, itm in enumerate(self.active_phrase):
+                if itm == b:
+                    print(itm)
+                    dashed_list[idx] = itm
+        print(f"\ndash list!: {''.join(dashed_list)}  ")
 
 
         #
