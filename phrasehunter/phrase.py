@@ -4,7 +4,7 @@
 class Phrase:
     def __init__(self, phrase):
         self.active_phrase = phrase.lower()
-        # self.active_phrase_list = list(self.active_phrase)
+        self.active_phrase_list = list(self.active_phrase)
 
     def __str__(self):
         return self.active_phrase
@@ -36,33 +36,31 @@ class Phrase:
 
         print(f"\nACTIVE PHRASE LIST: {list(self.active_phrase)}")
 
-        # the_indices = [index for (index, item) in enumerate(self.active_phrase) if item == user_guessed_list[index]]
-        # print(f"THE INDICES: {the_indices}")
+        the_indices = [index for (index, item) in enumerate(self.active_phrase) if item == user_guess]
+        print(f"THE INDICES: {the_indices}")
 
         dashed_list = []
 
         for key, value in enumerate(iter(self.active_phrase)):
             # print(key, value)
-            # if value.isalpha():
-            #     value = "_"
-            #     # print("_", end=" ")
-            #     dashed_list.append(value)
-            # if value == user_guess:
-            #     # value = user_guess
-            #     print(value)
-            #     dashed_list.append(value)
-            if value.isalpha() and value != user_guess:
-                #value = "_"
-                print("_", end=" ")
-                # dashed_list.append(value)
+            if value.isalpha():
+                value = "_"
+                # print("_", end=" ")
+                dashed_list.append(value)
             else:
-                #value = " "
-                print("  ", end="")
+                value = " "
+                # print("  ", end="")
                 dashed_list.append(value)
 
         print(f"\ndash list!: {' '.join(dashed_list)}  ")
 
         print(f"NEW DASHED LIST: {dashed_list}")
+
+        for a, b in enumerate(user_guessed_list):
+            print(a, b)
+            filter([lambda element:element == b, self.active_phrase_list])
+
+
 
         #
         # the_indices = []
