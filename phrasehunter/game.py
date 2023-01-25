@@ -79,7 +79,7 @@ class Game:
         else:
             if self.active_phrase.check_letter(user_guess) is False:
                 self.missed += 1
-                print(f"You have {self.max_num_of_attempts - self.missed} out of {self.max_num_of_attempts} lives remaining!")
+                print(f"\nYou have {self.max_num_of_attempts - self.missed} out of {self.max_num_of_attempts} lives remaining!\n")
             else:
                 self.guesses.append(user_guess)
                 self.active_phrase.display(self.guesses)

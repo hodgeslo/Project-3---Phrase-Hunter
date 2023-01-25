@@ -1,5 +1,5 @@
 # Create your Phrase class logic here.
-
+from phrasehunter import game
 
 class Phrase:
     def __init__(self, phrase):
@@ -60,4 +60,5 @@ class Phrase:
             print("game in progress")
         else:
             print(f"you win!")
+            return True
 
