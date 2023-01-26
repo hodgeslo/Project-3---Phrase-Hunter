@@ -32,6 +32,7 @@ class Game:
         ]
         self.active_phrase = None
         self.guesses = []
+        self.play_again = None
 
     """
      get_random_phrase(): this method randomly retrieves one of the phrases stored in the phrases list and returns it.
@@ -51,9 +52,13 @@ class Game:
  |  __ \| |                        | |  | |           | |            |  __ \         | |   |_   _|_   _|
  | |__) | |__  _ __ __ _ ___  ___  | |__| |_   _ _ __ | |_ ___ _ __  | |__) |_ _ _ __| |_    | |   | |  
  |  ___/| '_ \| '__/ _` / __|/ _ \ |  __  | | | | '_ \| __/ _ \ '__| |  ___/ _` | '__| __|   | |   | |  
- | |    \  __/ | |  | | |_| | | | | ||  __/ |    | |  | (_| | |  | |_   _| |_ _| |_ 
+ | |    \  __/ | |  | | |_| | | | | ||  __/ |    | |  | (_| | |  | |_   _| |_ _| |_  |  \   _| |_ _| |_
  |_|    |_| |_|_|  \__,_|___/\___| |_|  |_|\__,_|_| |_|\__\___|_|    |_|   \__,_|_|   \__| |_____|_____|
         """)
+        print(f"The ultimate word guessing game. Can you guess the phrase without any misses?")
+        print(f"You will be presented with a phrase that is masked by an underscore (_) for each letter of the word.")
+        print(f"You have a limited number of times to guess incorrectly. Choose wisely your guesses.")
+        print(f"Each guess should be one letter from A to Z.\n\n")
 
     """
     get_guess(): this method gets the guess from a user and records it in the guesses attribute
@@ -83,21 +88,19 @@ class Game:
             else:
                 self.guesses.append(user_guess)
                 self.active_phrase.display(self.guesses)
-
     """
     game_over(): this method displays a friendly win or loss message and ends the game.
     """
 
     def game_over(self):
-        if self.missed == self.max_num_of_attempts:
-            print("you lost!")
-            try:
-                user_play_again = input("Would you like to play again? y/n  ")
-                if user_play_again == " " or not user_play_again.isalpha():
-                    print(f"Oops, try again")
-            except ValueError:
-                print(f"Oops, try again")
-        return f"GAME OVER"
+        user_play_again = input("Would you like to play again? y/n  ")
+        if user_play_again == " " or not user_play_again.isalpha():
+            print(f"Oops, try again")
+        elif user_play_again.lower() == 'y':
+            return True
+        elif user_play_again.lower() == 'n':
+            return False
+
 
     """
     Calls the welcome method, creates the game loop, calls the get_guess method, adds the user's guess to guesses, 
@@ -108,11 +111,11 @@ class Game:
         # display welcome message to player
         self.welcome()
 
-        print(f"from start() with initial value: {self.active_phrase} and {id(self.active_phrase)}")
+        # print(f"from start() with initial value: {self.active_phrase} and {id(self.active_phrase)}")
 
         self.active_phrase = phrase.Phrase(self.get_random_phrase())
 
         while self.missed < self.max_num_of_attempts:
             self.get_guess()
         else:
-            print(self.game_over())
+            self.game_over()

@@ -39,7 +39,9 @@ class Phrase:
                     dashed_list[idx] = itm
         print(f"\n {' '.join(dashed_list)}")
 
-        self.check_complete(dashed_list)
+        phrase_complete = self.check_complete(dashed_list)
+
+        return phrase_complete
 
     """
     TODO: checks to see if the letter selected by the user matches a letter in the phrase.
@@ -59,6 +61,5 @@ class Phrase:
         if user_guessed_list.count("_") > 0:
             print("game in progress")
         else:
-            print(f"you win!")
-            return True
-
+            # print(f"you win!")
+            return "You win!!!!"
