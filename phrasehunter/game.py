@@ -18,17 +18,29 @@ class Game:
         """
         self.missed = 0
         self.max_num_of_attempts = 5
+        # self.phrases = [
+        #     "JAWS OF DEATH",
+        #     "HANDS DOWN",
+        #     "LICKETY SPLIT",
+        #     "GREASED LIGHTNING",
+        #     "QUICK ON THE DRAW",
+        #     "A BUSY BEE",
+        #     "CUT THE MUSTARD",
+        #     "CAT IN THE HAT",
+        #     "BREAK THE ICE",
+        #     "A HAIR LENGTH"
+        # ]
         self.phrases = [
-            "JAWS OF DEATH",
-            "HANDS DOWN",
-            "LICKETY SPLIT",
-            "GREASED LIGHTNING",
-            "QUICK ON THE DRAW",
-            "A BUSY BEE",
-            "CUT THE MUSTARD",
-            "CAT IN THE HAT",
-            "BREAK THE ICE",
-            "A HAIR LENGTH"
+            phrase.Phrase("JAWS OF DEATH"),
+            phrase.Phrase("HANDS DOWN"),
+            phrase.Phrase("LICKETY SPLIT"),
+            phrase.Phrase("GREASED LIGHTNING"),
+            phrase.Phrase("QUICK ON THE DRAW"),
+            phrase.Phrase("A BUSY BEE"),
+            phrase.Phrase("CUT THE MUSTARD"),
+            phrase.Phrase("CAT IN THE HAT"),
+            phrase.Phrase("BREAK THE ICE"),
+            phrase.Phrase("A HAIR LENGTH")
         ]
         self.active_phrase = None
         self.guesses = []
@@ -66,28 +78,9 @@ class Game:
 
     def get_guess(self):
         print(f"from get_guess(): {self.active_phrase}")
-        if not self.guesses:
-            for key, value in enumerate(self.active_phrase):
-                if value.isalpha():
-                    print("_", end=" ")
-                else:
-                    print(" ", end="")
-
         user_guess = input("\nGuess a letter:  ").lower()
+        return user_guess
 
-        if user_guess == "" or not user_guess.isalpha():
-            print(f"*** Invalid entry. Enter one letter only between A and Z. ***")
-        elif len(user_guess) > 1:
-            print(f"*** Too many letters entered. Enter one letter only between A and Z. Try again! ***")
-        elif [idx for idx, element in enumerate(self.guesses) if element == user_guess]:
-            print(f"*** You already guessed that letter. Try again! ***")
-        else:
-            if self.active_phrase.check_letter(user_guess) is False:
-                self.missed += 1
-                print(f"\nYou have {self.max_num_of_attempts - self.missed} out of {self.max_num_of_attempts} lives remaining!\n")
-            else:
-                self.guesses.append(user_guess)
-                self.active_phrase.display(self.guesses)
     """
     game_over(): this method displays a friendly win or loss message and ends the game.
     """
@@ -113,9 +106,26 @@ class Game:
 
         # print(f"from start() with initial value: {self.active_phrase} and {id(self.active_phrase)}")
 
-        self.active_phrase = phrase.Phrase(self.get_random_phrase())
+        self.active_phrase = self.get_random_phrase()
 
         while self.missed < self.max_num_of_attempts:
-            self.get_guess()
+            user_guess = self.get_guess()
+            if user_guess == "" or not user_guess.isalpha():
+                print(f"*** Invalid entry. Enter one letter only between A and Z. ***")
+            elif len(user_guess) > 1:
+                print(f"*** Too many letters entered. Enter one letter only between A and Z. Try again! ***")
+            elif [idx for idx, element in enumerate(self.guesses) if element == user_guess]:
+                print(f"*** You already guessed that letter. Try again! ***")
+            else:
+                if self.active_phrase.check_letter(user_guess) is False:
+                    self.missed += 1
+                    print(f"\nYou have {self.max_num_of_attempts - self.missed} out of {self.max_num_of_attempts} lives remaining!\n")
+                else:
+                    self.guesses.append(user_guess)
+                    if self.active_phrase.display(self.guesses):
+                        print("DONE")
+                        print(self.active_phrase.display(self.guesses))
+                        self.game_over()
+
         else:
             self.game_over()
