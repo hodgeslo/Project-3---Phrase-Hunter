@@ -90,9 +90,11 @@ class Game:
         if user_play_again == " " or not user_play_again.isalpha():
             print(f"Oops, try again")
         elif user_play_again.lower() == 'y':
-            return True
+            self.missed = 0
+            self.active_phrase = self.get_random_phrase()
+            self.guesses = []
         elif user_play_again.lower() == 'n':
-            return False
+            print(f"Thanks for playing!")
 
 
     """
@@ -129,3 +131,6 @@ class Game:
 
         else:
             self.game_over()
+            print(f"back in stat()")
+            return False
+
