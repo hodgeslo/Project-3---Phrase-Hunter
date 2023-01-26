@@ -61,6 +61,6 @@ class Phrase:
         if user_guessed_list.count("_") > 0:
             print("game in progress")
         else:
-            # print(f"you win!")
+            # print(f"you winz!")
             return "You win!!!!"
 
