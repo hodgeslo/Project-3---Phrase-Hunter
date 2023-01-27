@@ -78,25 +78,31 @@ class Game:
 
     def game_over(self):
         if self.game_state is "WIN":
-            print("YOU WON")
+            print("\nYOU WON!\n")
             self.new_game()
         elif self.game_state is "LOSE":
-            print("YOU LOST")
+            print("\nYOU LOST!\n")
             self.new_game()
 
 
     def new_game(self):
-        user_play_again = input("Would you like to play again? y/n  ")
-        if user_play_again == " " or not user_play_again.isalpha():
-            print(f"Oops, try again")
-        elif user_play_again.lower() == 'y':
-            self.active_game = True
-            self.missed = 0
-            self.guesses = []
-            self.game_state = None
-            self.active_phrase = self.get_random_phrase()
-        elif user_play_again.lower() == 'n':
-            print(f"Thanks for playing!")
+        while True:
+            user_play_again = input("Would you like to play again? y/n  ")
+            if user_play_again == " " or not user_play_again.isalpha():
+                print(f"Oops, try again")
+            elif user_play_again.lower() == 'y':
+                self.active_game = True
+                self.missed = 0
+                self.guesses = []
+                self.game_state = None
+                self.active_phrase = self.get_random_phrase()
+                self.welcome()
+                break
+            elif user_play_again.lower() == 'n':
+                print(f"\n\nGAME OVER. Thanks for playing Phrase Hunter Part II\n!")
+                break
+            else:
+                print("Oops. Try again. Enter y or n.")
 
     """
     Calls the welcome method, creates the game loop, calls the get_guess method, adds the user's guess to guesses, 
@@ -107,16 +113,12 @@ class Game:
         # display welcome message to player
         self.welcome()
 
-        # print(f"from start() with initial value: {self.active_phrase} and {id(self.active_phrase)}")
-
         self.active_phrase = self.get_random_phrase()
 
         self.active_game = True
 
         while self.active_game:
-            print(f"from start(): {self.active_phrase}")
-
-            if not self.guesses:
+            if not self.guesses :
                 for key, value in enumerate(self.active_phrase):
                     if value.isalpha():
                         print("_", end=" ")
@@ -135,6 +137,7 @@ class Game:
                 if self.active_phrase.check_letter(user_guess) is False:
                     self.missed += 1
                     print(f"\nYou have {self.max_num_of_attempts - self.missed} out of {self.max_num_of_attempts} lives remaining!\n")
+                    self.active_phrase.display(self.guesses)
                     if self.missed == 5:
                         self.active_game = False
                         self.game_state = "LOSE"

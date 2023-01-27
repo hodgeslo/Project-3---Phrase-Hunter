@@ -37,7 +37,6 @@ class Phrase:
         print(f"\n {' '.join(dashed_list)}")
 
         phrase_complete = self.check_complete(dashed_list)
-
         return phrase_complete
 
     """
