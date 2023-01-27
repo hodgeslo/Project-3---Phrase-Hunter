@@ -84,7 +84,6 @@ class Game:
             print("\nYOU LOST!\n")
             self.new_game()
 
-
     def new_game(self):
         while True:
             user_play_again = input("Would you like to play again? y/n  ")
@@ -115,10 +114,12 @@ class Game:
 
         self.active_phrase = self.get_random_phrase()
 
+        print(self.active_phrase)
+
         self.active_game = True
 
         while self.active_game:
-            if not self.guesses :
+            if not self.guesses:
                 for key, value in enumerate(self.active_phrase):
                     if value.isalpha():
                         print("_", end=" ")
@@ -129,19 +130,28 @@ class Game:
 
             if user_guess == "" or not user_guess.isalpha():
                 print(f"*** Invalid entry. Enter one letter only between A and Z. ***")
+                if self.guesses:
+                    self.active_phrase.display(self.guesses)
             elif len(user_guess) > 1:
                 print(f"*** Too many letters entered. Enter one letter only between A and Z. Try again! ***")
+                if self.guesses:
+                    self.active_phrase.display(self.guesses)
             elif [idx for idx, element in enumerate(self.guesses) if element == user_guess]:
                 print(f"*** You already guessed that letter. Try again! ***")
+                if self.guesses:
+                    self.active_phrase.display(self.guesses)
             else:
                 if self.active_phrase.check_letter(user_guess) is False:
                     self.missed += 1
-                    print(f"\nYou have {self.max_num_of_attempts - self.missed} out of {self.max_num_of_attempts} lives remaining!\n")
-                    self.active_phrase.display(self.guesses)
+                    print(
+                        f"\nYou have {self.max_num_of_attempts - self.missed} out of {self.max_num_of_attempts} lives remaining!\n")
+                    if self.guesses:
+                        self.active_phrase.display(self.guesses)
                     if self.missed == 5:
                         self.active_game = False
                         self.game_state = "LOSE"
                         self.game_over()
+                    continue
                 else:
                     self.guesses.append(user_guess)
                     if self.active_phrase.display(self.guesses):
