@@ -68,7 +68,6 @@ class Game:
     """
 
     def get_guess(self):
-        # print(f"from get_guess(): {self.active_phrase}")
         user_guess = input("\nGuess a letter:  ").lower()
         return user_guess
 
@@ -98,7 +97,7 @@ class Game:
                 self.welcome()
                 break
             elif user_play_again.lower() == 'n':
-                print(f"\n\nGAME OVER. Thanks for playing Phrase Hunter Part II\n!")
+                print(f"\n\nGAME OVER. Thanks for playing Phrase Hunter Part II!\n")
                 break
             else:
                 print("Oops. Try again. Enter y or n.")
@@ -113,8 +112,6 @@ class Game:
         self.welcome()
 
         self.active_phrase = self.get_random_phrase()
-
-        print(self.active_phrase)
 
         self.active_game = True
 
