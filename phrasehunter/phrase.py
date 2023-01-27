@@ -37,6 +37,7 @@ class Phrase:
             for idx, itm in enumerate(self.active_phrase):
                 if itm == b:
                     dashed_list[idx] = itm
+
         print(f"\n {' '.join(dashed_list)}")
 
         phrase_complete = self.check_complete(dashed_list)
@@ -58,9 +59,5 @@ class Phrase:
     """
 
     def check_complete(self, user_guessed_list):
-        if user_guessed_list.count("_") > 0:
-            print("game in progress")
-        else:
-            # print(f"you winz!")
-            return "You win!!!!"
-
+        if user_guessed_list.count("_") == 0:
+            return True

@@ -46,8 +46,7 @@ class Game:
         ]
         self.active_phrase = None
         self.guesses = []
-        self.play_again = None
-        logging.debug(f"What happened here? {self.missed} {self.max_num_of_attempts} {self.phrases} {self.active_phrase} {self.guesses}")
+        self.game_state = None
 
     """
      get_random_phrase(): this method randomly retrieves one of the phrases stored in the phrases list and returns it.
@@ -89,19 +88,25 @@ class Game:
     """
 
     def game_over(self):
-        user_play_again = input("Would you like to play again? y/n  ")
-        if user_play_again == " " or not user_play_again.isalpha():
-            print(f"Oops, try again")
-        elif user_play_again.lower() == 'y':
-            self.missed = 0
-            self.active_phrase = self.get_random_phrase()
-            self.guesses.clear()
-            return True
-        elif user_play_again.lower() == 'n':
-            print(f"Thanks for playing!")
-            return False
+        if self.game_state is "WIN":
+            print("YOU WON")
+        elif self.game_state is "LOSE":
+            print("YOU LOST")
+        # print(f"game_over(): from Phrase: {self.active_phrase.display(self.guesses)}")
+        # user_play_again = input("Would you like to play again? y/n  ")
+        # if user_play_again == " " or not user_play_again.isalpha():
+        #     print(f"Oops, try again")
+        # elif user_play_again.lower() == 'y':
+        #     self.missed = 0
+        #     self.active_phrase = self.get_random_phrase()
+        #     self.guesses.clear()
+        #     return True
+        # elif user_play_again.lower() == 'n':
+        #     print(f"Thanks for playing!")
+        #     return False
 
-
+    def new_game(self):
+        pass
 
     """
     Calls the welcome method, creates the game loop, calls the get_guess method, adds the user's guess to guesses, 
@@ -116,7 +121,9 @@ class Game:
 
         self.active_phrase = self.get_random_phrase()
 
-        while self.missed < self.max_num_of_attempts:
+        active_game = True
+
+        while active_game:
             print(f"from start(): {self.active_phrase}")
 
             if not self.guesses:
@@ -134,19 +141,18 @@ class Game:
                 print(f"*** Too many letters entered. Enter one letter only between A and Z. Try again! ***")
             elif [idx for idx, element in enumerate(self.guesses) if element == user_guess]:
                 print(f"*** You already guessed that letter. Try again! ***")
-            # else:
-            if self.active_phrase.check_letter(user_guess) is False:
-                self.missed += 1
-                print(f"\nYou have {self.max_num_of_attempts - self.missed} out of {self.max_num_of_attempts} lives remaining!\n")
             else:
-                self.guesses.append(user_guess)
-                if self.active_phrase.display(self.guesses):
-                    print("DONE")
-                    print(self.active_phrase.display(self.guesses))
-                    # self.game_over()
-        else:
-            #self.game_over()
-            print(f"back in stat()")
-            self.game_over()
-            #return False
+                if self.active_phrase.check_letter(user_guess) is False:
+                    self.missed += 1
+                    print(f"\nYou have {self.max_num_of_attempts - self.missed} out of {self.max_num_of_attempts} lives remaining!\n")
+                    if self.missed == 5:
+                        active_game = False
+                        self.game_state = "LOSE"
+                        self.game_over()
+                else:
+                    self.guesses.append(user_guess)
+                    if self.active_phrase.display(self.guesses):
+                        active_game = False
+                        self.game_state = "WIN"
+                        self.game_over()
 
