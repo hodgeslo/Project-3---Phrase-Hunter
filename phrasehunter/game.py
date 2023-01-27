@@ -20,18 +20,6 @@ class Game:
         """
         self.missed = 0
         self.max_num_of_attempts = 5
-        # self.phrases = [
-        #     "JAWS OF DEATH",
-        #     "HANDS DOWN",
-        #     "LICKETY SPLIT",
-        #     "GREASED LIGHTNING",
-        #     "QUICK ON THE DRAW",
-        #     "A BUSY BEE",
-        #     "CUT THE MUSTARD",
-        #     "CAT IN THE HAT",
-        #     "BREAK THE ICE",
-        #     "A HAIR LENGTH"
-        # ]
         self.phrases = [
             phrase.Phrase("JAWS OF DEATH"),
             phrase.Phrase("HANDS DOWN"),
@@ -47,6 +35,7 @@ class Game:
         self.active_phrase = None
         self.guesses = []
         self.game_state = None
+        self.active_game = None
 
     """
      get_random_phrase(): this method randomly retrieves one of the phrases stored in the phrases list and returns it.
@@ -90,23 +79,24 @@ class Game:
     def game_over(self):
         if self.game_state is "WIN":
             print("YOU WON")
+            self.new_game()
         elif self.game_state is "LOSE":
             print("YOU LOST")
-        # print(f"game_over(): from Phrase: {self.active_phrase.display(self.guesses)}")
-        # user_play_again = input("Would you like to play again? y/n  ")
-        # if user_play_again == " " or not user_play_again.isalpha():
-        #     print(f"Oops, try again")
-        # elif user_play_again.lower() == 'y':
-        #     self.missed = 0
-        #     self.active_phrase = self.get_random_phrase()
-        #     self.guesses.clear()
-        #     return True
-        # elif user_play_again.lower() == 'n':
-        #     print(f"Thanks for playing!")
-        #     return False
+            self.new_game()
+
 
     def new_game(self):
-        pass
+        user_play_again = input("Would you like to play again? y/n  ")
+        if user_play_again == " " or not user_play_again.isalpha():
+            print(f"Oops, try again")
+        elif user_play_again.lower() == 'y':
+            self.active_game = True
+            self.missed = 0
+            self.guesses = []
+            self.game_state = None
+            self.active_phrase = self.get_random_phrase()
+        elif user_play_again.lower() == 'n':
+            print(f"Thanks for playing!")
 
     """
     Calls the welcome method, creates the game loop, calls the get_guess method, adds the user's guess to guesses, 
@@ -121,9 +111,9 @@ class Game:
 
         self.active_phrase = self.get_random_phrase()
 
-        active_game = True
+        self.active_game = True
 
-        while active_game:
+        while self.active_game:
             print(f"from start(): {self.active_phrase}")
 
             if not self.guesses:
@@ -146,13 +136,12 @@ class Game:
                     self.missed += 1
                     print(f"\nYou have {self.max_num_of_attempts - self.missed} out of {self.max_num_of_attempts} lives remaining!\n")
                     if self.missed == 5:
-                        active_game = False
+                        self.active_game = False
                         self.game_state = "LOSE"
                         self.game_over()
                 else:
                     self.guesses.append(user_guess)
                     if self.active_phrase.display(self.guesses):
-                        active_game = False
+                        self.active_game = False
                         self.game_state = "WIN"
                         self.game_over()
-
