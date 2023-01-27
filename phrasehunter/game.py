@@ -1,4 +1,6 @@
 # Create your Game class logic in here.
+import logging
+
 from phrasehunter import phrase
 import random
 
@@ -45,6 +47,7 @@ class Game:
         self.active_phrase = None
         self.guesses = []
         self.play_again = None
+        logging.debug(f"What happened here? {self.missed} {self.max_num_of_attempts} {self.phrases} {self.active_phrase} {self.guesses}")
 
     """
      get_random_phrase(): this method randomly retrieves one of the phrases stored in the phrases list and returns it.
@@ -77,7 +80,7 @@ class Game:
     """
 
     def get_guess(self):
-        print(f"from get_guess(): {self.active_phrase}")
+        # print(f"from get_guess(): {self.active_phrase}")
         user_guess = input("\nGuess a letter:  ").lower()
         return user_guess
 
@@ -92,9 +95,12 @@ class Game:
         elif user_play_again.lower() == 'y':
             self.missed = 0
             self.active_phrase = self.get_random_phrase()
-            self.guesses = []
+            self.guesses.clear()
+            return True
         elif user_play_again.lower() == 'n':
             print(f"Thanks for playing!")
+            return False
+
 
 
     """
@@ -111,26 +117,36 @@ class Game:
         self.active_phrase = self.get_random_phrase()
 
         while self.missed < self.max_num_of_attempts:
+            print(f"from start(): {self.active_phrase}")
+
+            if not self.guesses:
+                for key, value in enumerate(self.active_phrase):
+                    if value.isalpha():
+                        print("_", end=" ")
+                    else:
+                        print(" ", end=" ")
+
             user_guess = self.get_guess()
+
             if user_guess == "" or not user_guess.isalpha():
                 print(f"*** Invalid entry. Enter one letter only between A and Z. ***")
             elif len(user_guess) > 1:
                 print(f"*** Too many letters entered. Enter one letter only between A and Z. Try again! ***")
             elif [idx for idx, element in enumerate(self.guesses) if element == user_guess]:
                 print(f"*** You already guessed that letter. Try again! ***")
+            # else:
+            if self.active_phrase.check_letter(user_guess) is False:
+                self.missed += 1
+                print(f"\nYou have {self.max_num_of_attempts - self.missed} out of {self.max_num_of_attempts} lives remaining!\n")
             else:
-                if self.active_phrase.check_letter(user_guess) is False:
-                    self.missed += 1
-                    print(f"\nYou have {self.max_num_of_attempts - self.missed} out of {self.max_num_of_attempts} lives remaining!\n")
-                else:
-                    self.guesses.append(user_guess)
-                    if self.active_phrase.display(self.guesses):
-                        print("DONE")
-                        print(self.active_phrase.display(self.guesses))
-                        self.game_over()
-
+                self.guesses.append(user_guess)
+                if self.active_phrase.display(self.guesses):
+                    print("DONE")
+                    print(self.active_phrase.display(self.guesses))
+                    # self.game_over()
         else:
-            self.game_over()
+            #self.game_over()
             print(f"back in stat()")
-            return False
+            self.game_over()
+            #return False
 
