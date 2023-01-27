@@ -19,10 +19,6 @@ class Phrase:
     """
 
     def display(self, user_guessed_list):
-        # print(f"from phrase.display() WHAT: {user_guessed_list}")
-
-        # print(f"\nACTIVE PHRASE LIST: {list(self.active_phrase)}")
-
         dashed_list = []
 
         for key, value in enumerate(iter(self.active_phrase)):
