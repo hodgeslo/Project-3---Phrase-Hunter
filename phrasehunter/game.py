@@ -1,6 +1,3 @@
-# Create your Game class logic in here.
-import logging
-
 from phrasehunter import phrase
 import random
 
@@ -108,7 +105,6 @@ class Game:
     """
 
     def start(self):
-        # display welcome message to player
         self.welcome()
 
         self.active_phrase = self.get_random_phrase()

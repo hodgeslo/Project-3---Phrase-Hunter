@@ -1,4 +1,3 @@
-# Create your Phrase class logic here.
 from phrasehunter import game
 
 class Phrase:
